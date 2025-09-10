@@ -11,6 +11,7 @@ import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useCartStore from "@/stores/useCartStore";
 import CartButton from "@/components/ui/CartButton";
+import Animated from "react-native-reanimated";
 
 interface DetailsRouteProps extends RouteProp<Record<string, any>> {
   params: { id: string };
@@ -36,13 +37,14 @@ const Details = () => {
     <SafeAreaView className="flex-1 p-4 gap-4 relative">
       <View style={{ flex: 0.58 }}>
         <View style={{ flex: 1, position: "relative" }}>
-          <Image
+          <Animated.Image
             style={{
               width: "100%",
               height: "100%",
               borderRadius: 20,
             }}
-            contentFit={"cover"}
+            resizeMode={"cover"}
+            sharedTransitionTag={`item.${game.id}.image`}
             source={{ uri: game?.image }}
           />
           <View style={{ position: "absolute", top: 10, left: 10 }}>
@@ -60,10 +62,19 @@ const Details = () => {
       </View>
       <View style={{ flex: 0.4, gap: 10 }}>
         <View>
-          <Text className="font-semibold text-3xl">{game.name}</Text>
-          <Text style={{ color: "#a0a0a0" }} className="font-medium text-md">
+          <Animated.Text
+            className="font-semibold text-3xl"
+            sharedTransitionTag={`item.${game.id}.name`}
+          >
+            {game.name}
+          </Animated.Text>
+          <Animated.Text
+            sharedTransitionTag={`item.${game.id}.category`}
+            style={{ color: "#a0a0a0" }}
+            className="font-medium text-md"
+          >
             {game.category.name}
-          </Text>
+          </Animated.Text>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
             <Text className="font-semibold text-sm">5.0</Text>
             <AntDesign name="star" size={18} color="#FFDB58" />

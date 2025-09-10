@@ -5,6 +5,7 @@ import { AntDesign, Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import useFavoriteStore from "@/stores/useFavoriteStore";
 import LikeButton from "./LikeButton";
+import Animated from "react-native-reanimated";
 export interface GameCardProps {
   index?: number;
   id: string;
@@ -33,22 +34,32 @@ const GameCard = (props: GameCardProps) => {
         style={{ height: 200 }}
         className="w-full rounded-lg overflow-hidden"
       >
-        <Image
+        <Animated.Image
           style={{
             width: "100%",
             height: "100%",
             borderRadius: 10,
             overflow: "hidden",
           }}
-          contentFit="cover"
-          contentPosition={"center"}
+          resizeMode="cover"
+          resizeMethod={"resize"}
+          sharedTransitionTag={`item.${props.id}.image`}
           source={{ uri: props.image }}
         />
       </View>
-      <Text className="font-semibold text-xl">{props.name}</Text>
-      <Text style={{ color: "#ccc" }} className="font-light text-sm">
+      <Animated.Text
+        className="font-semibold text-xl"
+        sharedTransitionTag={`item.${props.id}.name`}
+      >
+        {props.name}
+      </Animated.Text>
+      <Animated.Text
+        style={{ color: "#ccc" }}
+        className="font-light text-sm"
+        sharedTransitionTag={`item.${props.id}.category`}
+      >
         {props.category.name}
-      </Text>
+      </Animated.Text>
       <View
         style={{ justifyContent: "space-between", alignItems: "center" }}
         className=" w-full flex-row justify-between"

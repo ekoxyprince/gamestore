@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ProfileLinks from "@/constants/ProfileLinks";
+import Animated from "react-native-reanimated";
+import { router } from "expo-router";
 
 const Profile = () => {
   return (
@@ -43,10 +45,14 @@ const Profile = () => {
           alignItems: "center",
           justifyContent: "center",
         }}
+        onPress={() => router.push("/(others)/resetpassword")}
       >
-        <Text className="w-full text-center text-red-600 font-semibold text-lg">
+        <Animated.Text
+          sharedTransitionTag="tag.test"
+          className="w-full text-center text-red-600 font-semibold text-lg"
+        >
           Logout
-        </Text>
+        </Animated.Text>
       </TouchableOpacity>
     </ScrollView>
   );

@@ -28,7 +28,14 @@ export default function RootLayout() {
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(main)" options={{ headerShown: false }} />
-        <Stack.Screen name="(others)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(others)"
+          options={{
+            headerShown: false,
+            animation: "fade",
+            presentation: "card",
+          }}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
