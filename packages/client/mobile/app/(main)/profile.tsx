@@ -11,8 +11,10 @@ import {
 import ProfileLinks from "@/constants/ProfileLinks";
 import Animated from "react-native-reanimated";
 import { router } from "expo-router";
+import useAuthStore from "@/stores/useAuthStore";
 
 const Profile = () => {
+  const auth = useAuthStore();
   return (
     <ScrollView
       contentContainerStyle={{ gap: 15 }}
@@ -45,7 +47,7 @@ const Profile = () => {
           alignItems: "center",
           justifyContent: "center",
         }}
-        onPress={() => router.push("/(others)/resetpassword")}
+        onPress={() => auth.logout()}
       >
         <Animated.Text
           sharedTransitionTag="tag.test"
